@@ -24,13 +24,13 @@ class Receipt
     tax = 0
     @transactions.each do |i|
       if i[:tax] == 0.05
-        tax += i[:tax] * 1.05
+        tax += i[:price] * 0.05
       elsif i[:tax] == 0.10
-        tax += i[:tax] * 1.10
-      elsif i[:tax] == 0.15
-        tax += i[:tax] * 1.15
+        tax += i[:price] * 0.10
+      elsif i[:price] == 0.15
+        tax += i[:price] * 0.15
       else
-        tax += i[:tax]
+        tax += 0
       end
     end
     return tax
@@ -50,6 +50,7 @@ class Receipt
     '
     puts "Thank You!".rjust(25)
     puts "Come again...".rjust(27)
+    puts ""
     puts "Description".ljust(30) + "Amount".rjust(10)
     puts "-" * 40
     @transactions.each do |i|
